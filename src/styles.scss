@@ -1,1 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+@include mat.core();
+
+$todo-list-primary: mat.define-palette(mat.$indigo-palette);
+$todo-list-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$todo-list-warn: mat.define-palette(mat.$red-palette);
+
+$todo-list-theme: mat.define-light-theme((
+  color: (
+    primary: $todo-list-primary,
+    accent: $todo-list-accent,
+    warn: $todo-list-warn,
+  )
+));
+
+@include mat.all-component-themes($todo-list-theme);
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: mat.get-color-from-palette(mat.$gray-palette, 200);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-block: auto;
+}
+
+mat-card-header {
+  background-color: mat.get-color-from-palette($todo-list-primary, 500);
+  color: mat.get-color-from-palette($todo-list-primary, 500-contrast);
+  padding: 16px !important;
+  font-size: 1.25em;
+}
+
+app-todo-item {
+  & section {
+    position: relative;
+    padding: 0.5em;
+    border: 2px solid  mat.get-color-from-palette($todo-list-primary, 500);
+    margin-top: 1em;
+    border-radius: 1em;
+  }
+
+  & .is-done {
+    color: mat.get-color-from-palette(mat.$gray-palette, 300);
+    border-color: mat.get-color-from-palette(mat.$gray-palette, 200);
+    background:
+      linear-gradient(to top left,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) calc(50% - 0.8px),
+        mat.get-color-from-palette(mat.$gray-palette, 300) 50%,
+        rgba(0,0,0,0) calc(50% + 0.8px),
+        rgba(0,0,0,0) 100%
+      )
+  }
+}
+
+app-login div {
+  color: mat.get-color-from-palette($todo-list-primary, 500);
+}
+
+// Custom snackbars styles
+.mat-mdc-snack-bar-container {
+  --mat-mdc-snack-bar-button-color: white !important;
+  --mdc-snackbar-container-color: #eeeeee !important;
+
+  &.green-snackbar {
+    --mdc-snackbar-supporting-text-color: #4caf50 !important;
+
+    button {
+      background-color: #4caf50 !important;
+    }
+  }
+
+  &.red-snackbar {
+    --mdc-snackbar-supporting-text-color: #f44336 !important;
+
+    button {
+      background-color: #f44336 !important;
+    }
+  }
+}
