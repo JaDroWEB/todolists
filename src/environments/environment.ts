@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  dataApi: 'https://63ebd4a8be929df00ca2f645.mockapi.io/api',
+  authConfig: {
+    domain: 'dev-7gluwe2a66r2oqkb.us.auth0.com',
+    clientId: '8ex9IpaFn9p60Am3asW7lGFriYKeywHF',
+    authorizationParams: {
+      redirect_uri: window.location.origin
+    }
+  }
 };
 
 /*
