@@ -1,0 +1,35 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
+  margin: 1em;
+}
+
+mat-spinner {
+  margin-inline: auto;
+  margin-top: 30vh;
+}
+
+p {
+  margin: 2em;
+  font-size: 1.25em;
+  text-align: center;
+}
+
+@media screen and (min-width: 1200px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+    margin: 1em;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+    margin: 1em;
+  }
+}

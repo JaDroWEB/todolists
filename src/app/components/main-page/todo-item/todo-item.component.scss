@@ -1,0 +1,16 @@
+.flexer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+@media screen and (max-width: 600px) {
+  .flexer {
+    flex-direction: column;
+    gap: 0;
+
+    & .buttons {
+      margin-left: auto;
+    }
+  }
+}

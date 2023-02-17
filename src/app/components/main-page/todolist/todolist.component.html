@@ -1,0 +1,42 @@
+<mat-card *ngIf="todoList$ | async as todoList">
+  <mat-card-header>
+    <mat-card-title>{{ todoList.name }}</mat-card-title>
+    <div class="buttons">
+      <button (click)="editList(todoList)" mat-icon-button matTooltip="Edit ToDo list">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button (click)="deleteList(todoList)" mat-icon-button matTooltip="Delete ToDo list">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <button (click)="addTodoItem(todoList.id!)" mat-raised-button color="accent">Add Item</button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="controls">
+      <mat-form-field appearance="fill" class="fld">
+        <input
+          matInput
+          placeholder="Search..."
+          (keyup)="filter$.next(getValueFromEvent($event))"
+        >
+      </mat-form-field>
+
+      <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">Sort by: {{ sort$ | async }}</button>
+      <mat-menu #menu="matMenu">
+        <button (click)="sort$.next('Closest Deadline')" mat-menu-item>Closest Deadline</button>
+        <button (click)="sort$.next('Newest')" mat-menu-item>Newest</button>
+        <button (click)="sort$.next('Oldest')" mat-menu-item>Oldest</button>
+        <button (click)="sort$.next('Active')" mat-menu-item>Active</button>
+        <button (click)="sort$.next('Done')" mat-menu-item>Done</button>
+      </mat-menu>
+    </div>
+
+    <app-todo-item
+      *ngFor="let todoItem of todoList.todoItems; trackBy: identify"
+      [todoItem]="todoItem"
+    ></app-todo-item>
+  </mat-card-content>
+</mat-card>

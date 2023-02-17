@@ -1,0 +1,50 @@
+<section *ngIf="todo$ | async as todo" [class.is-done]="todo.isDone">
+  <article>
+    <div class="flexer">
+      <h3>{{ todo.title }}</h3>
+
+      <div class="buttons">
+        <button
+          (click)="editTodoItem(todo)"
+          [disabled]="todo.isDone"
+          mat-icon-button
+          matTooltip="Edit ToDo item"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button
+          (click)="deleteTodoItem(todo)"
+          [disabled]="todo.isDone"
+          mat-icon-button
+          matTooltip="Delete ToDo item"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        <button
+          (click)="toogleDoneItem(todo)"
+          mat-icon-button
+          color="accent"
+          [matTooltip]="'Mark as ' + (todo.isDone ? 'Active' : 'Done')"
+        >
+          <mat-icon>{{ todo.isDone ? 'done' : 'close' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <p>{{ todo.description }}</p>
+  </article>
+
+  <div class="flexer">
+    <small>
+      Created At:
+      <span>{{ todo.createdAt | date:'dd.MM.yyyy HH:mm' }}</span>
+    </small>
+
+    <small>
+      Deadline:
+      <span>{{ todo.deadline | date:'dd.MM.yyyy HH:mm' }}</span>
+    </small>
+  </div>
+</section>

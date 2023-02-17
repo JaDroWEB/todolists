@@ -1,0 +1,18 @@
+<section *ngIf="!(isLoading$ | async); else loading">
+  <ng-container *hasAuth>
+    <div class="grid" *ngIf="(todoLists$ | async)?.length; else noLists">
+      <app-todolist
+        *ngFor="let todoList of todoLists$ | async; trackBy: identify"
+        [todoList]="todoList">
+      </app-todolist>
+    </div>
+  </ng-container>
+</section>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>
+
+<ng-template #noLists>
+  <p>There are no ToDo Lists to show. Please, add your first ToDo List by button in top right corner of page.</p>
+</ng-template>
